@@ -104,7 +104,7 @@ function TransactionList() {
       </table>
 
       <h3 style={{ marginTop: '20px' }}>Total Balance: ₹{total.toFixed(2)}</h3>
-    </div>
+          </div>
   );
 }
 
