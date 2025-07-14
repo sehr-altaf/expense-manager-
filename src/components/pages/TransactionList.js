@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { db } from '../../firebase';
+import { Navigate , useNavigate} from 'react-router-dom';
 import {
   collection,
   addDoc,
@@ -8,6 +9,7 @@ import {
   doc,
   updateDoc
 } from 'firebase/firestore';
+
 
 function TransactionList() {
   const [entry, setEntry] = useState({ date: '', type: '', description: '', amount: '' });
@@ -25,6 +27,7 @@ function TransactionList() {
   useEffect(() => {
     fetchTransactions();
   }, []);
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -61,22 +64,25 @@ function TransactionList() {
     return item.type === 'Income' ? sum + item.amount : sum - item.amount;
   }, 0);
 
+  
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate('/new-transaction');
+  };
+
   return (
     <div style={{ padding: '20px' }}>
+         <div>
+      <button type="button" onClick={handleClick}>
+        New Transactions
+      </button>
+    </div>
       <h2>All Transactions</h2>
 
-      <form onSubmit={handleSubmit} style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', marginBottom: '20px' }}>
-        <input type="date" name="date" value={entry.date} onChange={handleChange} required />
-        <select name="type" value={entry.type} onChange={handleChange} required>
-          <option value="">Select Type</option>
-          <option value="Income">Income</option>
-          <option value="Expense">Expense</option>
-        </select>
-        <input type="text" name="description" placeholder="Description" value={entry.description} onChange={handleChange} required />
-        <input type="number" name="amount" placeholder="Amount" value={entry.amount} onChange={handleChange} required />
-        <button type="submit">{editId ? 'Update' : 'Add'}</button>
-      </form>
+      
 
+     
       <table border="1" width="100%" cellPadding="10">
         <thead>
           <tr>
@@ -103,8 +109,13 @@ function TransactionList() {
         </tbody>
       </table>
 
+<<<<<<< HEAD
       <h3 style={{ marginTop: '20px' }}>Total Balance: ₹{total.toFixed(2)}</h3>
           </div>
+=======
+      <h3 style={{ marginTop: '20px' }}>Total Balance:{total.toFixed(2)}</h3>
+    </div>
+>>>>>>> 66292eb (project added)
   );
 }
 

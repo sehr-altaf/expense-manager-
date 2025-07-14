@@ -7,10 +7,11 @@ function Sidebar() {
   return (
     <div className="sidebar">
       <ul>
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="/income">IncomeList</Link></li>
-        <li><Link to="/expense">ExpenseList</Link></li>
-        <li><Link to="/transaction">TransactionList</Link></li>
+        <li><Link to="/">Dashboard</Link></li>
+        {/* <li><Link to="/income">IncomeList</Link></li>
+        <li><Link to="/expense">ExpenseList</Link></li> */}
+        <li><Link to="/transaction">Transactions</Link></li>
+        <li><Link to= "/Categories">Categories</Link></li>
 
       </ul>
     </div>
